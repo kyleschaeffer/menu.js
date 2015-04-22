@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <title>Full screen navigation menu example</title>
+        <meta name="description" content="">
+        
+        <!-- menu.js stylesheet -->
+        <link rel="stylesheet" href="menu.css">
+        
+        <!-- demo styles -->
+        <link rel="stylesheet" href="examples.css">
+        
+    </head>
+    <body class="demo">
+        
+        <header id="header">
+            
+            <!-- simple navigation example -->
+            <a href="#menu" class="btn">
+                <span class="menu-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+                <span class="menu-label">Menu</span>
+            </a>
+            <nav id="menu" class="ui-menu">
+                <div class="menu-close">
+                    <a href="#menu">
+                        <span class="menu-icon">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </span>
+                        <span class="label">Close menu</span>
+                    </a>
+                </div>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+            <!-- /simple navigation example -->
+            
+        </header>
+        
+        <main id="content" class="content-wrap">
+            <h1>Custom menu styles</h1>
+            <p><strong>Script:</strong></p>
+            <pre>$('#menu').menu({
+  offcanvas: 'full-screen'
+});</pre>
+            <p><strong>CSS:</strong></p>
+            <pre>.ui-menu-full-screen {
+  width: 100%;
+  right: 100%;
+}
+.ui-menu-canvas-active-full-screen {
+  left: 100%;
+}</pre>
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line-short"></div>
+        </main>
+        
+        <!-- dependencies -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="menu.js"></script>
+        
+        <!-- run the script -->
+        <script>
+            
+            // simple menu
+            $('#menu').menu({
+                offcanvas: 'full-screen'
+            });
+            
+        </script>
+        
+    </body>
+</html>
