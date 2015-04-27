@@ -3,10 +3,18 @@
     $.fn.menu = function(options){
         
         // settings
-        var settings = $.extend({}, {
+        var settings = $.extend(true, {}, {
             selector: this.selector,
             offcanvas: false,
-            accordion: false,
+            canvas: 'body',
+            scrollbody: 'body',
+            expand: {
+                enabled: false,
+                button: true,
+                label: '<span class="label">Open menu</span>',
+                single: false,
+                blur: false
+            },
             oninit: false,
             ontoggle: false,
             destroy: false
@@ -38,7 +46,7 @@
                         
                         // add classes
                         menu.addClass('ui-menu-offcanvas ui-menu-' + settings.offcanvas);
-                        $('body').addClass('ui-menu-canvas');
+                        $(settings.canvas).addClass('ui-menu-canvas');
                         
                     }
                     
@@ -62,20 +70,38 @@
                         
                     });
                     
-                    // accordion?
-                    if(settings.accordion){
+                    // expand?
+                    if(settings.expand.enabled){
                         
                         // find child menus
                         menu.find('ul ul').each(function(){
                             
                             // add classes
-                            $(this).addClass('ui-menu-sub');
+                            var ul = $(this);
+                            ul.addClass('ui-menu-sub');
                             
-                            // create toggle button
-                            var button = $('<button class="ui-menu-sub-btn" aria-expanded="false"><span class="label">Open menu</span></button>');
+                            // expand buttons?
+                            if(settings.expand.button){
+                                
+                                // create toggle button
+                                var button = $('<button class="ui-menu-sub-btn">' + settings.expand.label + '</button>');
+                                
+                                // add button
+                                ul.before(button);
+                                
+                            }
+                            
+                            // expand when clicking nav link
+                            else{
+                                var button = ul.prev('a,button,span');
+                            }
+                            
+                            // expanded
+                            button.attr('aria-expanded', false);
                             
                             // click
-                            button.on('click', function(){
+                            button.on('click', function(e){
+                                e.preventDefault();
                                 
                                 // toggle classes
                                 $(this).toggleClass('ui-menu-sub-btn-active');
@@ -83,16 +109,21 @@
                                 
                                 // toggle attributes
                                 if($(this).hasClass('ui-menu-sub-btn-active')){
+                                    
+                                    // expanded
                                     $(this).attr('aria-expanded', true);
+                                    
+                                    // close sibling menus
+                                    if(settings.expand.single){
+                                        ul.closest('li').siblings('li').find('.ui-menu-sub-btn-active').trigger('click');
+                                    }
+                                    
                                 }
                                 else{
                                     $(this).attr('aria-expanded', false);
                                 }
                                 
                             });
-                            
-                            // add button
-                            $(this).before(button);
                             
                         });
                         
@@ -113,7 +144,8 @@
                     
                     // off-canvas?
                     if(settings.offcanvas){
-                        $('body').toggleClass('ui-menu-canvas-active-' + settings.offcanvas);
+                        $(settings.canvas).toggleClass('ui-menu-canvas-active-' + settings.offcanvas);
+                        $(settings.scrollbody).toggleClass('ui-canvas-active');
                     }
                     
                     // active?
@@ -147,10 +179,10 @@
                     
                     // remove classes
                     menu.removeClass('ui-menu ui-menu-offcanvas ui-menu-active');
-                    $('body').removeClass(function(i, css){
+                    $(settings.canvas).removeClass(function(i, css){
                         return(css.match(/\bui-menu-canvas-active-\S+/g) || []).join(' ');
                     });
-                    $('body').removeClass('ui-menu-canvas');
+                    $(settings.canvas).removeClass('ui-menu-canvas');
                     
                     // buttons
                     buttons.each(function(){
@@ -166,7 +198,7 @@
                         
                     });
                     
-                    // remove accordions
+                    // remove expand
                     menu.find('ul ul').removeClass('ui-menu-sub ui-menu-sub-active');
                     menu.find('.ui-menu-sub-btn').remove();
                     

@@ -15,6 +15,7 @@
     position: relative;
     overflow-x: hidden;
     left: 0;
+    -webkit-transition: left 0.3s ease;
     transition: left 0.3s ease;
 }
 .ui-menu li {
@@ -57,17 +58,22 @@ ul.ui-menu-sub-active {
     height: 2px;
     background: #fff;
     margin-bottom: 4px;
+    -webkit-transition: -webkit-transform 0.3s ease, opacity 0.3s ease;
     transition: transform 0.3s ease, opacity 0.3s ease;
 }
 .ui-menu-btn-active .menu-icon > span {
-    transform: translate(0, 8px) rotate(135deg);
+    -webkit-transform: translateY(8px) rotate(135deg);
+    -ms-transform: translateY(8px) rotate(135deg);
+    transform: translateY(8px) rotate(135deg);
 }
 .ui-menu-btn-active .menu-icon > span + span {
     opacity: 0;
 }
 .ui-menu-btn-active .menu-icon > span + span + span {
     opacity: 1;
-    transform: translate(0, -4px) rotate(-135deg);
+    -webkit-transform: translateY(-4px) rotate(-135deg);
+    -ms-transform: translateY(-4px) rotate(-135deg);
+    transform: translateY(-4px) rotate(-135deg);
 }
 
 /* accordion button styles (optional) */
@@ -89,9 +95,12 @@ ul.ui-menu-sub-active {
     border: 6px solid transparent; /* size of triangle */
     border-bottom: 0;
     border-top-color: #eee; /* color of triangle */
+    -webkit-transition: -webkit-transform 0.3s ease;
     transition: transform 0.3s ease;
 }
 .ui-menu-sub-btn.ui-menu-sub-btn-active:before {
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
     transform: rotate(180deg);
 }
 .ui-menu-sub-btn .label {

@@ -82,6 +82,10 @@ iframe {
     iframe + iframe {
         margin-left: 4%;
     }
+    iframe.wide {
+        width: 100%;
+        float: none;
+    }
 }
 @media (min-width: 980px){
     body {
@@ -148,6 +152,34 @@ button.btn {
 }
 .ui-menu-sub-btn:focus, .ui-menu-sub-btn:hover {
     background: rgba(255, 255, 255, 0.025);
+}
+
+/* horizontal menu */
+#menu.menu-horizontal {
+    display: table;
+    width: 100%;
+}
+#menu.menu-horizontal > ul {
+    display: table-row;
+}
+#menu.menu-horizontal > ul > li {
+    display: table-cell;
+    text-align: center;
+    position: relative;
+}
+#menu.menu-horizontal > ul > li > a.ui-menu-sub-btn-active {
+    background-color: #3d85b0;
+}
+#menu.menu-horizontal > ul > li > ul {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    text-align: left;
+    background-color: #3d85b0;
+}
+#menu.menu-horizontal .ui-menu-sub-btn {
+    border-left: 0;
 }
 
 /* content */
