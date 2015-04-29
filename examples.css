@@ -92,6 +92,14 @@ iframe {
         font-size: 20px;
     }
 }
+.visible-xs {
+    display: none !important;
+}
+@media (max-width: 767px){
+    .visible-xs {
+        display: inline-block !important;
+    }
+}
 
 /* header */
 #header {
@@ -145,12 +153,12 @@ button.btn {
 #menu a:focus, #menu a:hover {
     background: rgba(255, 255, 255, 0.025);
 }
-.ui-menu-sub-btn {
-    height: 48px;
+.ui-menu-section-btn {
+    height: 49px;
     border-left: 1px solid rgba(0, 0, 0, 0.075);
     transition: background-color 0.15s ease;
 }
-.ui-menu-sub-btn:focus, .ui-menu-sub-btn:hover {
+.ui-menu-section-btn:focus, .ui-menu-section-btn:hover {
     background: rgba(255, 255, 255, 0.025);
 }
 
@@ -167,7 +175,7 @@ button.btn {
     text-align: center;
     position: relative;
 }
-#menu.menu-horizontal > ul > li > a.ui-menu-sub-btn-active {
+#menu.menu-horizontal > ul > li > a.ui-menu-section-btn-active {
     background-color: #3d85b0;
 }
 #menu.menu-horizontal > ul > li > ul {
@@ -178,7 +186,7 @@ button.btn {
     text-align: left;
     background-color: #3d85b0;
 }
-#menu.menu-horizontal .ui-menu-sub-btn {
+#menu.menu-horizontal .ui-menu-section-btn {
     border-left: 0;
 }
 
@@ -199,12 +207,22 @@ button.btn {
 }
 
 /* custom full screen menu style */
-.ui-menu-full-screen {
+.menu-full-screen {
+    left: 0;
     width: 100%;
-    right: 100%;
+    -webkit-transform: translate(-100%, 0px);
+    -ms-transform: translate(-100%, 0px);
+    transform: translate(-100%, 0px);
+}
+.menu-full-screen.ui-menu-active {
+    -webkit-transform: translate(0px, 0px);
+    -ms-transform: translate(0px, 0px);
+    transform: translate(0px, 0px);
 }
 .ui-menu-canvas-active-full-screen {
-    left: 100%;
+    -webkit-transform: translate(100%, 0px);
+    -ms-transform: translate(100%, 0px);
+    transform: translate(100%, 0px);
 }
 .menu-close {
     background: rgba(0, 0, 0, 0.25);
@@ -216,14 +234,4 @@ button.btn {
     padding: 16px;
     color: #fff;
     text-decoration: none;
-}
-.menu-close .label {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0,0,0,0);
-    border: 0;
 }

@@ -5,9 +5,12 @@
         // settings
         var settings = $.extend(true, {}, {
             selector: this.selector,
-            offcanvas: false,
-            canvas: 'body',
-            scrollbody: 'body',
+            offcanvas: {
+                style: false,
+                canvas: '.menu-canvas',
+                scroller: 'html',
+                blur: false
+            },
             expand: {
                 enabled: false,
                 button: true,
@@ -42,11 +45,29 @@
                     menu.addClass('ui-menu');
                     
                     // off canvas?
-                    if(settings.offcanvas){
+                    if(settings.offcanvas.style){
                         
                         // add classes
-                        menu.addClass('ui-menu-offcanvas ui-menu-' + settings.offcanvas);
-                        $(settings.canvas).addClass('ui-menu-canvas');
+                        menu.addClass('ui-menu-offcanvas');
+                        $(settings.offcanvas.canvas).addClass('ui-menu-canvas');
+                        
+                        // no scrolling
+                        $(settings.offcanvas.scroller).addClass('ui-menu-noscroll');
+                        
+                        // blur?
+                        if(settings.offcanvas.blur){
+                            
+                            // blur sections on click
+                            $(document).on('click', function(e){
+                                
+                                // not in menu?
+                                if(!$(e.target).is('.ui-menu, .ui-menu *, .ui-menu-btn, .ui-menu-btn *')){
+                                    $('.ui-menu-active').trigger('menu-toggle');
+                                }
+                                
+                            });
+                            
+                        }
                         
                     }
                     
@@ -78,13 +99,13 @@
                             
                             // add classes
                             var ul = $(this);
-                            ul.addClass('ui-menu-sub');
+                            ul.addClass('ui-menu-section');
                             
                             // expand buttons?
                             if(settings.expand.button){
                                 
                                 // create toggle button
-                                var button = $('<button class="ui-menu-sub-btn">' + settings.expand.label + '</button>');
+                                var button = $('<button class="ui-menu-section-btn">' + settings.expand.label + '</button>');
                                 
                                 // add button
                                 ul.before(button);
@@ -104,18 +125,18 @@
                                 e.preventDefault();
                                 
                                 // toggle classes
-                                $(this).toggleClass('ui-menu-sub-btn-active');
-                                $(this).siblings('.ui-menu-sub').toggleClass('ui-menu-sub-active');
+                                $(this).toggleClass('ui-menu-section-btn-active');
+                                $(this).siblings('.ui-menu-section').toggleClass('ui-menu-section-active');
                                 
                                 // toggle attributes
-                                if($(this).hasClass('ui-menu-sub-btn-active')){
+                                if($(this).hasClass('ui-menu-section-btn-active')){
                                     
                                     // expanded
                                     $(this).attr('aria-expanded', true);
                                     
                                     // close sibling menus
                                     if(settings.expand.single){
-                                        ul.closest('li').siblings('li').find('.ui-menu-sub-btn-active').trigger('click');
+                                        ul.closest('li').siblings('li').find('.ui-menu-section-btn-active').trigger('click');
                                     }
                                     
                                 }
@@ -126,6 +147,21 @@
                             });
                             
                         });
+                        
+                        // blur?
+                        if(settings.expand.blur){
+                            
+                            // blur sections on click
+                            $(document).on('click', function(e){
+                                
+                                // not menu?
+                                if(!$(e.target).is('.ui-menu, .ui-menu *, .ui-menu-btn, .ui-menu-btn *')){
+                                    $('.ui-menu-section-btn-active').trigger('click');
+                                }
+                                
+                            });
+                            
+                        }
                         
                     }
                     
@@ -143,9 +179,9 @@
                     menu.toggleClass('ui-menu-active');
                     
                     // off-canvas?
-                    if(settings.offcanvas){
-                        $(settings.canvas).toggleClass('ui-menu-canvas-active-' + settings.offcanvas);
-                        $(settings.scrollbody).toggleClass('ui-canvas-active');
+                    if(settings.offcanvas.style){
+                        $(settings.offcanvas.canvas).toggleClass('ui-menu-canvas-active-' + settings.offcanvas.style);
+                        $(settings.offcanvas.scroller).toggleClass('ui-menu-noscroll-active');
                     }
                     
                     // active?
@@ -179,10 +215,10 @@
                     
                     // remove classes
                     menu.removeClass('ui-menu ui-menu-offcanvas ui-menu-active');
-                    $(settings.canvas).removeClass(function(i, css){
+                    $(settings.offcanvas.scroller).removeClass('ui-menu-noscroll ui-menu-noscroll-active');
+                    $(settings.offcanvas.canvas).removeClass('ui-menu-canvas').removeClass(function(i, css){
                         return(css.match(/\bui-menu-canvas-active-\S+/g) || []).join(' ');
                     });
-                    $(settings.canvas).removeClass('ui-menu-canvas');
                     
                     // buttons
                     buttons.each(function(){
@@ -199,8 +235,12 @@
                     });
                     
                     // remove expand
-                    menu.find('ul ul').removeClass('ui-menu-sub ui-menu-sub-active');
-                    menu.find('.ui-menu-sub-btn').remove();
+                    menu.find('ul ul').removeClass('ui-menu-section ui-menu-section-active');
+                    menu.find('.ui-menu-section-btn').remove();
+                    
+                    // destroy events
+                    menu.off('menu-init menu-toggle menu-destroy');
+                    $(document).off('click');
                     
                 });
 

@@ -16,68 +16,79 @@
     </head>
     <body class="demo">
         
-        <header id="header">
-            
-            <!-- simple navigation example -->
-            <a href="#menu" class="btn">
-                <span class="menu-icon">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </span>
-                <span class="menu-label">Menu</span>
-            </a>
-            <nav id="menu">
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li>
-                        <a href="#">About</a>
-                        <ul>
-                            <li><a href="#">History</a></li>
-                            <li><a href="#">Leadership</a></li>
-                            <li>
-                                <a href="#">Meet the team</a>
-                                <ul>
-                                    <li><a href="#">Management</a></li>
-                                    <li><a href="#">Sales</a></li>
-                                    <li><a href="#">Creative</a></li>
-                                    <li><a href="#">Development</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">Blog</a>
-                        <ul>
-                            <li><a href="#">Category A</a></li>
-                            <li><a href="#">Category B</a></li>
-                            <li><a href="#">Category C</a></li>
-                            <li><a href="#">Category D</a></li>
-                            <li><a href="#">Category E</a></li>
-                            <li><a href="#">Category F</a></li>
-                            <li><a href="#">Category G</a></li>
-                            <li><a href="#">Category H</a></li>
-                            <li><a href="#">Category I</a></li>
-                            <li><a href="#">Category J</a></li>
-                            <li><a href="#">Category K</a></li>
-                            <li><a href="#">Category L</a></li>
-                            <li><a href="#">Category M</a></li>
-                            <li><a href="#">Category N</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </nav>
-            <!-- /simple navigation example -->
-            
-        </header>
+        <!-- menu -->
+        <nav id="menu" class="menu-offcanvas menu-right menu-expandable text-left">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li>
+                    <a href="#">About</a>
+                    <ul>
+                        <li><a href="#">History</a></li>
+                        <li><a href="#">Leadership</a></li>
+                        <li>
+                            <a href="#">Meet the team</a>
+                            <ul>
+                                <li><a href="#">Management</a></li>
+                                <li><a href="#">Sales</a></li>
+                                <li><a href="#">Creative</a></li>
+                                <li><a href="#">Development</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Blog</a>
+                    <ul>
+                        <li><a href="#">Category A</a></li>
+                        <li><a href="#">Category B</a></li>
+                        <li><a href="#">Category C</a></li>
+                        <li><a href="#">Category D</a></li>
+                        <li><a href="#">Category E</a></li>
+                        <li><a href="#">Category F</a></li>
+                        <li><a href="#">Category G</a></li>
+                        <li><a href="#">Category H</a></li>
+                        <li><a href="#">Category I</a></li>
+                        <li><a href="#">Category J</a></li>
+                        <li><a href="#">Category K</a></li>
+                        <li><a href="#">Category L</a></li>
+                        <li><a href="#">Category M</a></li>
+                        <li><a href="#">Category N</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+        <!-- /menu -->
         
-        <main id="content" class="content-wrap">
-            <h1>Destroy the menu</h1>
+        <!-- canvas -->
+        <div class="menu-canvas">
+            
+            <header id="header" class="text-right">
+                
+                <!-- menu button -->
+                <a href="#menu" class="btn">
+                    <span class="menu-icon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                    <span class="menu-label">Menu</span>
+                </a>
+                <!-- /menu button -->
+                
+            </header>
+            
+            <main id="content" class="content-wrap">
+                <h1>Destroy the menu</h1>
             <button id="destroy-button" class="btn">DESTROY!</button>
             <pre>$('#menu').menu({
+  offcanvas: {
+    style: 'right',
+    blur: true
+  },
   expand: {
-    enabled: true
+    enabled: true,
+    blur: true
   }
 });
 
@@ -86,7 +97,10 @@ $('#destroy-button').on('click', function(){
       destroy: true
   });
 });</pre>
-        </main>
+            </main>
+            
+        </div>
+        <!-- /canvas -->
         
         <!-- dependencies -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -95,13 +109,19 @@ $('#destroy-button').on('click', function(){
         <!-- run the script -->
         <script>
             
-            // simple menu
+            // create menu
             $('#menu').menu({
+                offcanvas: {
+                    style: 'right',
+                    blur: true
+                },
                 expand: {
-                    enabled: true
+                    enabled: true,
+                    blur: true
                 }
             });
             
+            // destroy menu
             $('#destroy-button').on('click', function(){
                 $('#menu').menu({
                     destroy: true

@@ -16,46 +16,57 @@
     </head>
     <body class="demo">
         
-        <header id="header">
-            
-            <!-- off-canvas (left) example -->
-            <a href="#menu" class="btn">
-                <span class="menu-icon">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </span>
-                <span class="menu-label">Menu</span>
-            </a>
-            <nav id="menu" class="ui-menu">
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </nav>
-            <!-- /off-canvas (left) example -->
-            
-        </header>
+        <!-- menu -->
+        <nav id="menu" class="menu-offcanvas menu-left">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+        <!-- /menu -->
         
-        <main id="content" class="content-wrap">
-            <h1>Off-canvas menu</h1>
-            <pre>$('#menu').menu({
-  offcanvas: 'left'
+        <!-- canvas -->
+        <div class="menu-canvas">
+            
+            <header id="header">
+                
+                <!-- menu button -->
+                <a href="#menu" class="btn">
+                    <span class="menu-icon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                    <span class="menu-label">Menu</span>
+                </a>
+                <!-- /menu button -->
+                
+            </header>
+            
+            <main id="content" class="content-wrap">
+                <h1>Off-canvas menu</h1>
+                <pre>$('#menu').menu({
+  offcanvas: {
+    style: 'left'
+  }
 });</pre>
-            <div class="line"></div>
-            <div class="line"></div>
-            <div class="line"></div>
-            <div class="line"></div>
-            <div class="line"></div>
-            <div class="line-short"></div>
-            <div class="line"></div>
-            <div class="line"></div>
-            <div class="line"></div>
-            <div class="line"></div>
-            <div class="line-short"></div>
-        </main>
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line-short"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line-short"></div>
+            </main>
+            
+        </div>
+        <!-- /canvas -->
         
         <!-- dependencies -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -64,9 +75,11 @@
         <!-- run the script -->
         <script>
             
-            // simple menu
+            // create menu
             $('#menu').menu({
-                offcanvas: 'left'
+                offcanvas: {
+                    style: 'left'
+                }
             });
             
         </script>
