@@ -139,7 +139,9 @@ $('#menu').menu({
 </script>
 ```
 
-Be sure to wrap your page content in an element with a CSS class of `menu-canvas`. The canvas element is the component that is "pushed" when the menu appears. [See the demo.](http://oldrivercreative.com/menu/example-left.html) The **menu.js** script includes `left` and `right` off-canvas menu styles by default. Feel free to alter or remove these default styles as needed.
+Be sure to wrap your page content in an element with a CSS class of `menu-canvas`. The canvas element is the component that is "pushed" when the menu appears. [See the demo.](http://oldrivercreative.com/menu/example-left.html)
+
+The **menu.js** script includes `left` and `right` off-canvas menu styles by default. Feel free to alter or remove these default styles as needed.
 
 ### Custom off-canvas menu styles
 You can even create your own off-canvas menu styles by adding a few CSS classes to any attached stylesheet.
