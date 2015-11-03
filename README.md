@@ -80,7 +80,7 @@ Enable expanding menus when you have more than one level of navigation hierarchy
   });
 </script>
 ```
-In this example, the **menu.js** script adds clickable expand/collapse buttons to each menu item that contains a child menu (much like an accordion).
+In this example, the **menu.js** script adds clickable expand/collapse buttons to each menu item that contains a child menu (much like an accordion). [See the demo.](http://oldrivercreative.com/menu/example-expand.html)
 
 ### Drop-down menus
 You can use additional configuration options to alter the expandable behavior of your menus, or even create drop-down menus.
@@ -112,7 +112,7 @@ $('#menu').menu({
 </script>
 ```
 
-Using this configuration, the `button:false` option removes the separate toggle button and allows users to click anywhere on the parent menu item to open its child menu. The `single:true` option allows only a single drop-down menu to remain open at any time. Finally, the `blur:true` option allows users to click anywhere outside the menu to close open menus. The effect is a simple drop-down menu.
+Using this configuration, the `button:false` option removes the separate toggle button and allows users to click anywhere on the parent menu item to open its child menu. The `single:true` option allows only a single drop-down menu to remain open at any time. Finally, the `blur:true` option allows users to click anywhere outside the menu to close open menus. The effect is a simple drop-down menu. [See the demo.](http://oldrivercreative.com/menu/example-dropdown.html)
 
 ### Off-canvas menus
 The **menu.js** script includes optional CSS styles for off-canvas navigation menus. Add CSS classes to your menu container and enable off-canvas in the `menu()` function to begin.
@@ -139,7 +139,7 @@ $('#menu').menu({
 </script>
 ```
 
-Be sure to wrap your page content in an element with a CSS class of `menu-canvas`. The canvas element is the component that is "pushed" when the menu appears. The **menu.js** script includes `left` and `right` off-canvas menu styles by default. Feel free to alter or remove these default styles as needed.
+Be sure to wrap your page content in an element with a CSS class of `menu-canvas`. The canvas element is the component that is "pushed" when the menu appears. [See the demo.](http://oldrivercreative.com/menu/example-left.html) The **menu.js** script includes `left` and `right` off-canvas menu styles by default. Feel free to alter or remove these default styles as needed.
 
 ### Custom off-canvas menu styles
 You can even create your own off-canvas menu styles by adding a few CSS classes to any attached stylesheet.
@@ -180,7 +180,7 @@ $('#menu').menu({
 </style>
 ```
 
-The **menu.js** script will add special CSS classes to both the menu container and the canvas when activated. Use the `ui-menu-active` CSS class to alter the appearance of the menu when it is activated, and use `ui-menu-canvas-active-%` to alter the appearance of the canvas (replace `%` with the off-canvas style name you are using).
+The **menu.js** script will add special CSS classes to both the menu container and the canvas when activated. Use the `ui-menu-active` CSS class to alter the appearance of the menu when it is activated, and use `ui-menu-canvas-active-%` to alter the appearance of the canvas (replace `%` with the off-canvas style name you are using). [See the demo.](http://oldrivercreative.com/menu/example-custom.html)
 
 ### Responsive menu visibility
 You can create responsive menus that are visible or collapsed in certain viewports. Add a CSS class and postfix (such as `menu-hidden-xs`) to your menu container to begin.
@@ -236,6 +236,8 @@ You can create off-canvas menus that appear in "off-canvas mode" only when in ce
   });
 </script>
 ```
+
+In this example, the off-canvas menu appears only in extra-small viewport sizes. [See the demo](http://oldrivercreative.com/menu/example-responsive.html) (you may have to reduce the size of your browser to see the responsive behavior).
 
 The **menu.js** script provides the following common viewport sizes and class names to help control the visibility of your off-canvas menus. In each class name, replace `%` with your off-canvas menu style (`left`, `right`, or your custom style name).
 
