@@ -54,34 +54,6 @@ $('.selector').menu({
 });
 ```
 
-### Responsive menus
-You can create responsive menus that are visible or collapsed in certain viewports. Add a CSS class and postfix (such as `menu-hidden-xs`) to your menu container to begin.
-
-```html
-<a href="#menu" class="visible-xs">Open menu</a>
-
-<div id="menu" class="menu-hidden-xs">
-  <ul>
-    <li><a href="#">Home</a></li>
-    <li><a href="#">About us</a></li>
-    <li><a href="#">Contact</a></li>
-  </ul>
-</div>
-
-<script>
-  $('#menu').menu();
-</script>
-```
-
-The **menu.js** script provides the following common viewport sizes and class names to help control the visibility of your menus.
-
-| Screen size | Class name |
-| ----------- | ---------- |
-| Extra-small (`<768px`) | `menu-hidden-xs` |
-| Small (`<992px`) | `menu-hidden-sm` |
-| Medium (`<1200px`) | `menu-hidden-md` |
-| All screens | `menu-hidden` |
-
 ### Expandable menus
 Enable expanding menus when you have more than one level of navigation hierarchy to improve the ease of navigation.
 
@@ -108,8 +80,10 @@ Enable expanding menus when you have more than one level of navigation hierarchy
   });
 </script>
 ```
+In this example, the **menu.js** script adds clickable expand/collapse buttons to each menu item that contains a child menu (much like an accordion).
 
-In this example, the **menu.js** script adds clickable expand/collapse buttons to each menu item that contains a child menu (much like an accordion). You can use additional configuration options to alter the expandable behavior of your menus. For example:
+### Drop-down menus
+You can use additional configuration options to alter the expandable behavior of your menus, or even create drop-down menus.
 
 ```html
 <nav id="menu" class="menu-expandable">
@@ -138,7 +112,7 @@ $('#menu').menu({
 </script>
 ```
 
-With this configuration, the menu becomes a simple drop-down menu. The `button:false` option removes the separate toggle button, and allows users to click anywhere on the parent menu item to open its child menu. The `single:true` option allows only a single drop-down menu to remain open at any time. Finally, the `blur:true` option allows users to click anywhere outside the menu to close open menus.
+Using this configuration, the `button:false` option removes the separate toggle button and allows users to click anywhere on the parent menu item to open its child menu. The `single:true` option allows only a single drop-down menu to remain open at any time. Finally, the `blur:true` option allows users to click anywhere outside the menu to close open menus. The effect is a simple drop-down menu.
 
 ### Off-canvas menus
 The **menu.js** script includes optional CSS styles for off-canvas navigation menus. Add CSS classes to your menu container and enable off-canvas in the `menu()` function to begin.
@@ -165,7 +139,10 @@ $('#menu').menu({
 </script>
 ```
 
-Be sure to wrap your page content in an element with a CSS class of `menu-canvas`. The canvas element is the component that is "pushed" when the menu appears. The **menu.js** script includes `left` and `right` off-canvas menu styles by default. You can alter or remove these default styles, or even create your own styles by adding CSS classes to any attached stylesheet.
+Be sure to wrap your page content in an element with a CSS class of `menu-canvas`. The canvas element is the component that is "pushed" when the menu appears. The **menu.js** script includes `left` and `right` off-canvas menu styles by default. Feel free to alter or remove these default styles as needed.
+
+### Custom off-canvas menu styles
+You can even create your own off-canvas menu styles by adding a few CSS classes to any attached stylesheet.
 
 ```html
 <nav id="menu" class="menu-offcanvas menu-full-screen">
@@ -203,7 +180,71 @@ $('#menu').menu({
 </style>
 ```
 
-The **menu.js** script will add special CSS classes to both the menu container and the canvas when activated. Use the `ui-menu-active` CSS class to alter the appearance of the menu when it is activated, and use `ui-menu-canvas-active-STYLE` to alter the appearance of the canvas (replace `STYLE` with the off-canvas style you are using).
+The **menu.js** script will add special CSS classes to both the menu container and the canvas when activated. Use the `ui-menu-active` CSS class to alter the appearance of the menu when it is activated, and use `ui-menu-canvas-active-%` to alter the appearance of the canvas (replace `%` with the off-canvas style name you are using).
+
+### Responsive menu visibility
+You can create responsive menus that are visible or collapsed in certain viewports. Add a CSS class and postfix (such as `menu-hidden-xs`) to your menu container to begin.
+
+```html
+<a href="#menu" class="visible-xs">Open menu</a>
+
+<nav id="menu" class="menu-hidden-xs">
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">About us</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+</nav>
+
+<script>
+  $('#menu').menu();
+</script>
+```
+
+The **menu.js** script provides the following common viewport sizes and class names to help control the visibility of your menus.
+
+| Screen size | Menu class name |
+| ----------- | --------------- |
+| Extra-small (`<768px`) | `menu-hidden-xs` |
+| Small (`<992px`) | `menu-hidden-sm` |
+| Medium (`<1200px`) | `menu-hidden-md` |
+| All screens | `menu-hidden` |
+
+### Responsive off-canvas menus
+You can create off-canvas menus that appear in "off-canvas mode" only when in certain viewports.
+
+```html
+<nav id="menu" class="menu-offcanvas-xs menu-left-xs">
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">About us</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="menu-canvas-xs">
+  <a href="#menu" class="visible-xs">Open menu</a>
+  <!-- page content appears here -->
+</div>
+
+<script>
+  $('#menu').menu({
+    offcanvas: {
+      style: 'left-xs',
+      canvas: '.menu-canvas-xs'
+    }
+  });
+</script>
+```
+
+The **menu.js** script provides the following common viewport sizes and class names to help control the visibility of your off-canvas menus. In each class name, replace `%` with your off-canvas menu style (`left`, `right`, or your custom style name).
+
+| Screen size | Menu class | Canvas class | Off-canvas style |
+| ----------- | ---------- | ------------ | ---------------- |
+| Extra-small (`<768px`) | `menu-offcanvas-xs menu-%-xs` | `menu-canvas-xs` | `%-xs` |
+| Small (`<992px`) | `menu-offcanvas-sm menu-%-sm` | `menu-canvas-sm` | `%-sm` |
+| Medium (`<1200px`) | `menu-offcanvas-md menu-%-md` | `menu-canvas-md` | `%-md` |
+| All screens | `menu-offcanvas menu-%` | `menu-canvas` | `%` |
 
 ## Browser support
 The **menu.js** script was written to be accessible on all known browsers and operating systems. While accessible everywhere, there may be some differences in functionality and appearance between systems. For example, the script utilizes CSS3 transitions for animation. If your browser does not support CSS3 transitions, animation may not appear.
