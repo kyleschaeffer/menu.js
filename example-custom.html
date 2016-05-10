@@ -6,16 +6,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <title>Full screen navigation menu example</title>
         <meta name="description" content="">
-        
+
         <!-- menu.js stylesheet -->
         <link rel="stylesheet" href="menu.css">
-        
+
         <!-- demo styles -->
         <link rel="stylesheet" href="examples.css">
-        
+
     </head>
     <body class="demo">
-        
+
         <!-- menu -->
         <nav id="menu" class="menu-offcanvas menu-full-screen">
             <div class="menu-close">
@@ -29,12 +29,12 @@
             </ul>
         </nav>
         <!-- /menu -->
-        
+
         <!-- canvas -->
         <div class="menu-canvas">
-            
+
             <header id="header">
-                
+
                 <!-- menu button -->
                 <a href="#menu" class="btn">
                     <span class="menu-icon">
@@ -45,9 +45,9 @@
                     <span class="menu-label">Menu</span>
                 </a>
                 <!-- /menu button -->
-                
+
             </header>
-            
+
             <main id="content" class="content-wrap">
                 <h1>Custom menu styles</h1>
                 <p><strong>Script:</strong></p>
@@ -60,18 +60,12 @@
                 <pre>.menu-full-screen {
   left: 0;
   width: 100%;
-  -webkit-transform: translate(-100%, 0px);
-  -ms-transform: translate(-100%, 0px);
   transform: translate(-100%, 0px);
 }
 .menu-full-screen.ui-menu-active {
-  -webkit-transform: translate(0px, 0px);
-  -ms-transform: translate(0px, 0px);
   transform: translate(0px, 0px);
 }
 .ui-menu-canvas-active-full-screen {
-  -webkit-transform: translate(100%, 0px);
-  -ms-transform: translate(100%, 0px);
   transform: translate(100%, 0px);
 }</pre>
                 <div class="line"></div>
@@ -81,25 +75,25 @@
                 <div class="line"></div>
                 <div class="line-short"></div>
             </main>
-            
+
         </div>
         <!-- /canvas -->
-        
+
         <!-- dependencies -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script src="menu.js"></script>
-        
+
         <!-- run the script -->
         <script>
-            
+
             // create menu
             $('#menu').menu({
                 offcanvas: {
                     style: 'full-screen'
                 }
             });
-            
+
         </script>
-        
+
     </body>
 </html>
