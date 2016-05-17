@@ -1,4 +1,4 @@
-/*! menu.js v1.0 | MIT License | https://github.com/oldrivercreative/menu.js */
+/*! menu.js v1.1 | MIT License | https://github.com/oldrivercreative/menu.js */
 (function($){
     $.fn.menu = function(options){
 
@@ -9,17 +9,21 @@
                 style: false,
                 canvas: '.menu-canvas',
                 scroller: 'html',
-                blur: false
+                blur: false,
+                blurfilter: false
             },
             expand: {
                 enabled: false,
                 button: true,
                 label: '<span class="label">Open menu</span>',
                 single: false,
-                blur: false
+                blur: false,
+                blurfilter: false
             },
             oninit: false,
+            beforetoggle: false,
             ontoggle: false,
+            onexpand: false,
             destroy: false
         }, options);
 
@@ -61,7 +65,8 @@
                             $(document).on('click', function(e){
 
                                 // not in menu?
-                                if(!$(e.target).is('.ui-menu, .ui-menu *, .ui-menu-btn, .ui-menu-btn *')){
+                                var targetfilter = '.ui-menu, .ui-menu *, .ui-menu-btn, .ui-menu-btn *' + (settings.offcanvas.blurfilter ? ', ' + settings.offcanvas.blurfilter : '');
+                                if(!$(e.target).is(targetfilter)){
                                     $('.ui-menu-active').trigger('menu-toggle');
                                 }
 
@@ -102,10 +107,11 @@
                             ul.addClass('ui-menu-section');
 
                             // expand buttons?
+                            var button = false;
                             if(settings.expand.button){
 
                                 // create toggle button
-                                var button = $('<button class="ui-menu-section-btn">' + settings.expand.label + '</button>');
+                                button = $('<button class="ui-menu-section-btn">' + settings.expand.label + '</button>');
 
                                 // add button
                                 ul.before(button);
@@ -114,7 +120,7 @@
 
                             // expand when clicking nav link
                             else{
-                                var button = ul.prev('a,button,span');
+                                button = ul.prev('a,button,span');
                             }
 
                             // expanded
@@ -144,6 +150,11 @@
                                     $(this).attr('aria-expanded', false);
                                 }
 
+                                // onexpand?
+                                if(typeof(settings.onexpand) == 'function'){
+                                    settings.onexpand(button);
+                                }
+
                             });
 
                         });
@@ -155,7 +166,8 @@
                             $(document).on('click', function(e){
 
                                 // not menu?
-                                if(!$(e.target).is('.ui-menu, .ui-menu *, .ui-menu-btn, .ui-menu-btn *')){
+                                var targetfilter = '.ui-menu, .ui-menu *, .ui-menu-btn, .ui-menu-btn *' + (settings.expand.blurfilter ? ', ' + settings.expand.blurfilter : '');
+                                if(!$(e.target).is(targetfilter)){
                                     $('.ui-menu-section-btn-active').trigger('click');
                                 }
 
@@ -174,6 +186,11 @@
 
                 // toggle
                 menu.on('menu-toggle', function(){
+
+                    // beforetoggle?
+                    if(typeof(settings.beforetoggle) == 'function'){
+                        settings.beforetoggle(menu);
+                    }
 
                     // toggle classes
                     menu.toggleClass('ui-menu-active');
@@ -205,7 +222,7 @@
 
                     // ontoggle?
                     if(typeof(settings.ontoggle) == 'function'){
-                        settings.onupdate(active);
+                        settings.ontoggle(menu, active);
                     }
 
                 });

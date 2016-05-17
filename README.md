@@ -39,17 +39,21 @@ $('.selector').menu({
     style: false,                                      // set to a string to enable off-canvas navigation (see below)
     canvas: '.menu-canvas',                            // the menu "canvas" is the element that gets "pushed" when the off-canvas menu is opened
     scroller: 'html',                                  // selector for the main scrolling page area
-    blur: false                                        // enable to deactivate the off-canvas menu when clicking anywhere on the page
+    blur: false,                                       // enable to deactivate the off-canvas menu when clicking anywhere on the page
+    blurfilter: false                                  // jQuery selector for click targets that should NOT trigger blur
   },
   expand: {
     enabled: false,                                    // set to true to enable expandable navigation (see below)
     button: true,                                      // true = separate clickable area for expand/collapse, false = click on the link to expand/collapse
     label: '<span class="label">Open menu</span>',     // default expand/collapse label (only works when button is true)
     single: false,                                     // enable to allow only a single menu to be expanded at any time
-    blur: false                                        // enable to deactivate the expanded menu when clicking anywhere on the page
+    blur: false,                                       // enable to deactivate the expanded menu when clicking anywhere on the page
+    blurfilter: false                                  // jQuery selector for click targets that should NOT trigger blur
   },
   oninit: function(){},                                // this function runs after the menu has been created
-  ontoggle: function(){},                              // this function runs any time the menu container is activated or deactivated
+  beforetoggle: function(menu){},                      // this function runs before the menu container is activated or deactivated
+  ontoggle: function(menu, active){},                  // this function runs after the menu container is activated or deactivated
+  onexpand: function(button){},                        // this function runs after an expandable item is activated or deactivated
   destroy: false                                       // set to true to destroy a previously created menu
 });
 ```
