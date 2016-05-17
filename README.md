@@ -50,7 +50,7 @@ $('.selector').menu({
     blur: false,                                       // enable to deactivate the expanded menu when clicking anywhere on the page
     blurfilter: false                                  // jQuery selector for click targets that should NOT trigger blur
   },
-  oninit: function(){},                                // this function runs after the menu has been created
+  oninit: function(menu){},                            // this function runs after the menu has been created
   beforetoggle: function(menu){},                      // this function runs before the menu container is activated or deactivated
   ontoggle: function(menu, active){},                  // this function runs after the menu container is activated or deactivated
   onexpand: function(button){},                        // this function runs after an expandable item is activated or deactivated

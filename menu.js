@@ -179,7 +179,7 @@
 
                     // oninit?
                     if(typeof(settings.oninit) == 'function'){
-                        settings.oninit();
+                        settings.oninit(menu);
                     }
 
                 });
