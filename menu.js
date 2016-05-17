@@ -28,7 +28,7 @@
 
             // get objects
             var menu = $(this);
-            var buttons = $('[href="' + menu.attr('id') + '"],[data-menu="' + menu.attr('id') + '"]');
+            var buttons = $('[href="#' + menu.attr('id') + '"],[data-menu="' + menu.attr('id') + '"]');
 
             // destroy?
             if(settings.destroy){
